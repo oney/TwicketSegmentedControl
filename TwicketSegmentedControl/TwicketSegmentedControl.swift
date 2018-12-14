@@ -16,9 +16,9 @@ open class TwicketSegmentedControl: UIControl {
     open static let height: CGFloat = Constants.height + Constants.topBottomMargin * 2
 
     private struct Constants {
-        static let height: CGFloat = 30
-        static let topBottomMargin: CGFloat = 5
-        static let leadingTrailingMargin: CGFloat = 10
+        static let height: CGFloat = 50
+        static let topBottomMargin: CGFloat = 0
+        static let leadingTrailingMargin: CGFloat = 0
     }
 
     class SliderView: UIView {
@@ -170,9 +170,9 @@ open class TwicketSegmentedControl: UIControl {
         selectedContainerView.frame = frame
         sliderView.frame = CGRect(x: 0, y: 0, width: segmentWidth, height: backgroundView.frame.height)
 
-        let cornerRadius = backgroundView.frame.height / 2
-        [backgroundView, selectedContainerView].forEach { $0.layer.cornerRadius = cornerRadius }
-        sliderView.cornerRadius = cornerRadius
+//        let cornerRadius = backgroundView.frame.height / 2
+//        [backgroundView, selectedContainerView].forEach { $0.layer.cornerRadius = cornerRadius }
+//        sliderView.cornerRadius = cornerRadius
 
         backgroundColor = .white
         backgroundView.backgroundColor = segmentsBackgroundColor
@@ -181,6 +181,12 @@ open class TwicketSegmentedControl: UIControl {
         if !isSliderShadowHidden {
             selectedContainerView.addShadow(with: sliderBackgroundColor)
         }
+    }
+
+    open func addBottom() {
+        let v = UIView(frame: CGRect(x: 0, y: 47, width: segmentWidth, height: backgroundView.frame.height - 47))
+        v.backgroundColor = .black
+        sliderView.addSubview(v)
     }
 
     private func setupAutoresizingMasks() {
